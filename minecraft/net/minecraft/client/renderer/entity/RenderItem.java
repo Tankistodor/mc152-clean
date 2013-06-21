@@ -509,8 +509,18 @@ public class RenderItem extends Render
 
     public void renderItemOverlayIntoGUI(FontRenderer par1FontRenderer, RenderEngine par2RenderEngine, ItemStack par3ItemStack, int par4, int par5, String par6Str)
     {
+    	
         if (par3ItemStack != null)
         {
+        	
+        	String q = "" + par3ItemStack.getQuality();
+        	
+        	GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glDisable(GL11.GL_DEPTH_TEST);
+            par1FontRenderer.drawStringWithShadow(q, par4 + 19 - 2 - par1FontRenderer.getStringWidth(q), par5 + 6 + 3, 16777215);
+            GL11.glEnable(GL11.GL_LIGHTING);
+            GL11.glEnable(GL11.GL_DEPTH_TEST);
+        	
             if (par3ItemStack.stackSize > 1 || par6Str != null)
             {
                 String s1 = par6Str == null ? String.valueOf(par3ItemStack.stackSize) : par6Str;

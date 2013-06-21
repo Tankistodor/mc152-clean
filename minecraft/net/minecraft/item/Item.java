@@ -225,7 +225,7 @@ public class Item
     public final int itemID;
 
     /** Maximum size of the stack. */
-    protected int maxStackSize = 64;
+    protected int maxStackSize = 1; // TANKE
 
     /** Maximum damage an item can handle. */
     private int maxDamage = 0;

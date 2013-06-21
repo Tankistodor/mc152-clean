@@ -658,7 +658,7 @@ public class InventoryPlayer implements IInventory
      */
     public int getInventoryStackLimit()
     {
-        return 64;
+        return 1; // TANKE
     }
 
     /**

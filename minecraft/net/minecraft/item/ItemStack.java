@@ -44,6 +44,9 @@ public final class ItemStack
     /** Damage dealt to the item or number of use. Raise when using items. */
     int itemDamage;
     
+    /** Item Quality */
+    int Quality;
+    
     /** Item frame this stack is on, or null if not on an item frame. */
     private EntityItemFrame itemFrame;
 
@@ -72,18 +75,26 @@ public final class ItemStack
         this(par1Item.itemID, par2, 0);
     }
 
-    public ItemStack(Item par1Item, int par2, int par3)
+    public ItemStack(Item par1Item, int pStackSize, int pItemDamage)
     {
-        this(par1Item.itemID, par2, par3);
+        this(par1Item.itemID, pStackSize, pItemDamage);
     }
 
-    public ItemStack(int par1, int par2, int par3)
+    public ItemStack(int par1, int pStackSize, int pItemDamage) {
+    	this(par1,pStackSize,pItemDamage,10);
+    }
+    
+    public ItemStack(int par1, int pStackSize, int pItemDamage, int pQuality)
     {
         this.stackSize = 0;
         this.itemFrame = null;
         this.itemID = par1;
-        this.stackSize = par2;
-        this.itemDamage = par3;
+        this.stackSize = pStackSize;
+        this.itemDamage = pItemDamage;
+        
+        //Random randomGenerator = new Random();
+        //+randomGenerator.nextInt(10);
+        this.Quality = pQuality;
 
         if (this.itemDamage < 0)
         {
@@ -186,6 +197,7 @@ public final class ItemStack
         par1NBTTagCompound.setShort("id", (short)this.itemID);
         par1NBTTagCompound.setByte("Count", (byte)this.stackSize);
         par1NBTTagCompound.setShort("Damage", (short)this.itemDamage);
+        par1NBTTagCompound.setShort("Quality", (short)this.Quality);
 
         if (this.stackTagCompound != null)
         {
@@ -203,6 +215,7 @@ public final class ItemStack
         this.itemID = par1NBTTagCompound.getShort("id");
         this.stackSize = par1NBTTagCompound.getByte("Count");
         this.itemDamage = par1NBTTagCompound.getShort("Damage");
+        this.Quality = par1NBTTagCompound.getShort("Quality");
 
         if (this.itemDamage < 0)
         {
@@ -804,5 +817,9 @@ public final class ItemStack
         }
 
         this.stackTagCompound.setInteger("RepairCost", par1);
+    }
+    
+    public int getQuality() {
+    	 return this.Quality;
     }
 }
