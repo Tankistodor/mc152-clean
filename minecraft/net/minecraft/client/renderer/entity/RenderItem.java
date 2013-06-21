@@ -513,7 +513,7 @@ public class RenderItem extends Render
         if (par3ItemStack != null)
         {
         	
-        	String q = "" + par3ItemStack.getQuality();
+        	String q = "" + par3ItemStack.getQuality(); //TODO Tanke
         	
         	GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_DEPTH_TEST);

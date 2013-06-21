@@ -229,7 +229,7 @@ public class Item
 
     /** Maximum damage an item can handle. */
     private int maxDamage = 0;
-
+    
     /** If true, render the object in full 3D, like weapons and tools. */
     protected boolean bFull3D = false;
 
@@ -1188,6 +1188,11 @@ public class Item
     {
         return stack.itemDamage;
     }
+    
+    public int getItemQuality(ItemStack stack) {
+    	return stack.Quality;
+    }
+    
 
     /**
      * Return the itemDamage display value represented by this itemstack.
@@ -1266,4 +1271,5 @@ public class Item
     {
         return canHarvestBlock(par1Block);  
     }
+    
 }

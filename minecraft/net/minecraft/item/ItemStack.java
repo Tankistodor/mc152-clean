@@ -81,7 +81,7 @@ public final class ItemStack
     }
 
     public ItemStack(int par1, int pStackSize, int pItemDamage) {
-    	this(par1,pStackSize,pItemDamage,10);
+    	this(par1,pStackSize,pItemDamage,15);
     }
     
     public ItemStack(int par1, int pStackSize, int pItemDamage, int pQuality)
@@ -91,11 +91,9 @@ public final class ItemStack
         this.itemID = par1;
         this.stackSize = pStackSize;
         this.itemDamage = pItemDamage;
-        
-        //Random randomGenerator = new Random();
-        //+randomGenerator.nextInt(10);
-        this.Quality = pQuality;
 
+        this.Quality = pQuality;
+        
         if (this.itemDamage < 0)
         {
             this.itemDamage = 0;
@@ -120,7 +118,7 @@ public final class ItemStack
      */
     public ItemStack splitStack(int par1)
     {
-        ItemStack itemstack = new ItemStack(this.itemID, par1, this.itemDamage);
+        ItemStack itemstack = new ItemStack(this.itemID, par1, this.itemDamage, this.Quality);
 
         if (this.stackTagCompound != null)
         {
@@ -197,7 +195,7 @@ public final class ItemStack
         par1NBTTagCompound.setShort("id", (short)this.itemID);
         par1NBTTagCompound.setByte("Count", (byte)this.stackSize);
         par1NBTTagCompound.setShort("Damage", (short)this.itemDamage);
-        par1NBTTagCompound.setShort("Quality", (short)this.Quality);
+        par1NBTTagCompound.setInteger("Quality", this.Quality);
 
         if (this.stackTagCompound != null)
         {
@@ -215,7 +213,7 @@ public final class ItemStack
         this.itemID = par1NBTTagCompound.getShort("id");
         this.stackSize = par1NBTTagCompound.getByte("Count");
         this.itemDamage = par1NBTTagCompound.getShort("Damage");
-        this.Quality = par1NBTTagCompound.getShort("Quality");
+        this.Quality = par1NBTTagCompound.getInteger("Quality");
 
         if (this.itemDamage < 0)
         {
@@ -227,13 +225,13 @@ public final class ItemStack
             this.stackTagCompound = par1NBTTagCompound.getCompoundTag("tag");
         }
     }
-
     /**
      * Returns maximum size of the stack.
      */
     public int getMaxStackSize()
     {
-        return this.getItem().getItemStackLimit();
+        //return this.getItem().getItemStackLimit();
+    	return 1;
     }
 
     /**
@@ -241,7 +239,8 @@ public final class ItemStack
      */
     public boolean isStackable()
     {
-        return this.getMaxStackSize() > 1 && (!this.isItemStackDamageable() || !this.isItemDamaged());
+        //return this.getMaxStackSize() > 1 && (!this.isItemStackDamageable() || !this.isItemDamaged());
+    	return false;
     }
 
     /**
@@ -438,7 +437,7 @@ public final class ItemStack
      */
     public ItemStack copy()
     {
-        ItemStack itemstack = new ItemStack(this.itemID, this.stackSize, this.itemDamage);
+        ItemStack itemstack = new ItemStack(this.itemID, this.stackSize, this.itemDamage, this.Quality);
 
         if (this.stackTagCompound != null)
         {
@@ -820,6 +819,12 @@ public final class ItemStack
     }
     
     public int getQuality() {
-    	 return this.Quality;
+    	
+    	 if (getItem() != null)
+         {
+             return getItem().getItemQuality(this);
+         }
+         return 1;
+    	// return this.Quality;
     }
 }

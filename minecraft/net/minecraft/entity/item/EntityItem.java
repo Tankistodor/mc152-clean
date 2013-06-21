@@ -1,6 +1,7 @@
 package net.minecraft.entity.item;
 
 import java.util.Iterator;
+import java.util.Random;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event.Result;
@@ -313,6 +314,7 @@ public class EntityItem extends Entity
         par1NBTTagCompound.setShort("Health", (short)((byte)this.health));
         par1NBTTagCompound.setShort("Age", (short)this.age);
         par1NBTTagCompound.setInteger("Lifespan", lifespan);
+        
 
         if (this.getEntityItem() != null)
         {
