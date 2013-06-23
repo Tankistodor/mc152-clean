@@ -1322,7 +1322,7 @@ public abstract class EntityLiving extends Entity
         {
             return;
         }
-
+        
         Entity entity = par1DamageSource.getEntity();
         EntityLiving entityliving = this.func_94060_bK();
 
@@ -1338,7 +1338,8 @@ public abstract class EntityLiving extends Entity
 
         this.dead = true;
 
-        if (!this.worldObj.isRemote)
+        //if (!this.worldObj.isRemote)
+        if ((!this.worldObj.isRemote) && (entityliving instanceof EntityPlayer)) // TODO Tanke
         {
             int i = 0;
 

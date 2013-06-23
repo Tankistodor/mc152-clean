@@ -45,7 +45,7 @@ public final class ItemStack
     int itemDamage;
     
     /** Item Quality */
-    int Quality;
+    //int Quality;
     
     /** Item frame this stack is on, or null if not on an item frame. */
     private EntityItemFrame itemFrame;
@@ -92,7 +92,7 @@ public final class ItemStack
         this.stackSize = pStackSize;
         this.itemDamage = pItemDamage;
 
-        this.Quality = pQuality;
+        //this.Quality = pQuality;
         
         if (this.itemDamage < 0)
         {
@@ -118,7 +118,8 @@ public final class ItemStack
      */
     public ItemStack splitStack(int par1)
     {
-        ItemStack itemstack = new ItemStack(this.itemID, par1, this.itemDamage, this.Quality);
+        //ItemStack itemstack = new ItemStack(this.itemID, par1, this.itemDamage, this.Quality);
+    	ItemStack itemstack = new ItemStack(this.itemID, par1, this.itemDamage);
 
         if (this.stackTagCompound != null)
         {
@@ -195,7 +196,7 @@ public final class ItemStack
         par1NBTTagCompound.setShort("id", (short)this.itemID);
         par1NBTTagCompound.setByte("Count", (byte)this.stackSize);
         par1NBTTagCompound.setShort("Damage", (short)this.itemDamage);
-        par1NBTTagCompound.setInteger("Quality", this.Quality);
+        //par1NBTTagCompound.setInteger("Quality", this.Quality);
 
         if (this.stackTagCompound != null)
         {
@@ -213,7 +214,7 @@ public final class ItemStack
         this.itemID = par1NBTTagCompound.getShort("id");
         this.stackSize = par1NBTTagCompound.getByte("Count");
         this.itemDamage = par1NBTTagCompound.getShort("Damage");
-        this.Quality = par1NBTTagCompound.getInteger("Quality");
+        //this.Quality = par1NBTTagCompound.getInteger("Quality");
 
         if (this.itemDamage < 0)
         {
@@ -437,7 +438,8 @@ public final class ItemStack
      */
     public ItemStack copy()
     {
-        ItemStack itemstack = new ItemStack(this.itemID, this.stackSize, this.itemDamage, this.Quality);
+        //ItemStack itemstack = new ItemStack(this.itemID, this.stackSize, this.itemDamage, this.Quality);
+    	ItemStack itemstack = new ItemStack(this.itemID, this.stackSize, this.itemDamage);
 
         if (this.stackTagCompound != null)
         {
@@ -818,7 +820,7 @@ public final class ItemStack
         this.stackTagCompound.setInteger("RepairCost", par1);
     }
     
-    public int getQuality() {
+    /*public int getQuality() {
     	
     	 if (getItem() != null)
          {
@@ -826,5 +828,5 @@ public final class ItemStack
          }
          return 1;
     	// return this.Quality;
-    }
+    }*/
 }

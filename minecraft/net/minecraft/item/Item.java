@@ -1189,9 +1189,9 @@ public class Item
         return stack.itemDamage;
     }
     
-    public int getItemQuality(ItemStack stack) {
+    /*public int getItemQuality(ItemStack stack) {
     	return stack.Quality;
-    }
+    }*/
     
 
     /**
